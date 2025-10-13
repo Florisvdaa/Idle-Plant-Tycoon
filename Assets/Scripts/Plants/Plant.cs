@@ -65,4 +65,7 @@ public class Plant : MonoBehaviour
             plantButton.image.sprite = growthStages[Mathf.Clamp(plantLevel, 0, growthStages.Length - 1)];
         }
     }
+
+    // References
+    public int PlantLevel => plantLevel;
 }
