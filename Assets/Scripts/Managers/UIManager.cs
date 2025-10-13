@@ -21,8 +21,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        plantLevelText.text = "Plant Lvl: " + currentPlant.PlantLevel.ToString();
-        moneyText.text = "Coins: " + ValueManager.Instance.CurrentMoney.ToString();
-        diamondsText.text = "Diamonds: " + ValueManager.Instance.CurrentDiamonds.ToString();
+        plantLevelText.text = "LVL: " + currentPlant.PlantLevel.ToString();
+        moneyText.text = ValueManager.Instance.CurrentMoney.ToString();
+        diamondsText.text = ValueManager.Instance.CurrentDiamonds.ToString();
     }
 }
