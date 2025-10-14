@@ -20,6 +20,11 @@ public class ValueManager : MonoBehaviour
     {
         currentMoney += amount;
 
+        Vector3 randFloatingTextPos = new Vector3(Random.Range(-1, 2), Random.Range(0, 1));
+
+        string valueString = "+ " + amount.ToString();
+
+        FeedbackManager.Instance.SpawnFloatingTextFeedback(valueString, randFloatingTextPos);
         Debug.Log($"Current Money: {currentMoney}");
     }
 

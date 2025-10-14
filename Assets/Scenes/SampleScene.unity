@@ -2974,7 +2974,7 @@ MonoBehaviour:
           m_NumAlphaKeys: 2
         ForceLifetime: 0
         Lifetime: 0.5
-        PositionMode: 1
+        PositionMode: 2
         TargetTransform: {fileID: 0}
         Direction: {x: 0, y: 0, z: 0}
         AttachmentTransform: {fileID: 0}
@@ -3166,6 +3166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1753031386}
+  - component: {fileID: 1753031387}
   m_Layer: 0
   m_Name: Feedbackmanager
   m_TagString: Untagged
@@ -3190,6 +3191,20 @@ Transform:
   - {fileID: 1597832768}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1753031387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753031385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ec6eb051a41ed47b630ec771e4a26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingTextFeedback: {fileID: 1597832769}
+  floatingTextSpawner: {fileID: 0}
 --- !u!1 &1845910125
 GameObject:
   m_ObjectHideFlags: 0
