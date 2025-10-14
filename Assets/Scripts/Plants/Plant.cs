@@ -37,7 +37,7 @@ public class Plant : MonoBehaviour
 
     private void OnPlantClicked()
     {
-        int earnedMoney = ValueManager.Instance.MultiplyMoney(baseMoneyValue + 1);
+        int earnedMoney = ValueManager.Instance.MultiplyMoney(baseMoneyValue);
         ValueManager.Instance.AddMoney(earnedMoney);
 
         // Optional: Level up plant or trigger animation
@@ -49,7 +49,7 @@ public class Plant : MonoBehaviour
 
     private void GeneratePassiveIncome()
     {
-        int earnedMoney = ValueManager.Instance.MultiplyMoney(baseMoneyValue);
+        int earnedMoney = ValueManager.Instance.MultiplyMoney(baseMoneyValue + 1);
         ValueManager.Instance.AddMoney(earnedMoney);
     }
 
