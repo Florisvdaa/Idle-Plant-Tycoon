@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Button shopButton;
     [SerializeField] private Button gameButton;
+
+    [Header("Panels")]
+    [SerializeField] private List<UIPanelEntry> panels = new List<UIPanelEntry>();
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,9 +29,9 @@ public class UIManager : MonoBehaviour
         else
             Instance = this;
 
-        upgradeButton.onClick.AddListener(ShowUpgradePanel);
-        shopButton.onClick.AddListener(ShowUpgradePanel);
-        gameButton.onClick.AddListener(ShowGamePanel);
+        upgradeButton.onClick.AddListener(() => ShowPanel("Upgrade"));
+        shopButton.onClick.AddListener(() => ShowPanel("Shop"));
+        gameButton.onClick.AddListener(() => ShowPanel("Game"));
     }
 
     private void Update()
@@ -35,19 +41,21 @@ public class UIManager : MonoBehaviour
         diamondsText.text = ValueManager.Instance.CurrentDiamonds.ToString();
     }
 
-    private void ShowUpgradePanel()
+    public void ShowPanel(string panelName)
     {
-        Debug.Log("upgrade panel");
+        foreach (var entry in panels)
+        {
+            entry.panelObject.SetActive(entry.panelName == panelName);
+        }
+
+        Debug.Log($"Switched to panel: {panelName}");
     }
 
-    public void ShowShopPanel()
-    {
-        Debug.Log("Shop panel");
+}
 
-    }
-    public void ShowGamePanel()
-    {
-        Debug.Log("Game panel");
-
-    }
+[System.Serializable]
+public class UIPanelEntry
+{
+    public string panelName;
+    public GameObject panelObject;
 }
