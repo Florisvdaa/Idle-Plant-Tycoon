@@ -4,10 +4,10 @@ public class ValueManager : MonoBehaviour
 {
     public static ValueManager Instance { get; private set; }
 
-    private int currentMoney;
+    private float currentMoney;
     private int currentDiamonds;
 
-    private int moneyMultiplier = 1;
+    private float moneyMultiplier = 1;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -16,7 +16,7 @@ public class ValueManager : MonoBehaviour
             Instance = this;
     }
 
-    public void AddMoney(int amount)
+    public void AddMoney(float amount)
     {
         currentMoney += amount;
 
@@ -33,12 +33,23 @@ public class ValueManager : MonoBehaviour
         currentDiamonds += amount;
     }
 
-    public int MultiplyMoney(int amount)
+    public float MultiplyMoney(int amount)
     {
         return amount * moneyMultiplier;
     }
 
-    public int CurrentMoney => currentMoney;
+    public void PayForUpgrade(int cost)
+    {
+        currentMoney -= cost;
+    }
+
+    // Upgrades
+    public void IncreaseMultiplier() // Overall Money upgrade
+    {
+        moneyMultiplier += 0.5f;
+    }
+
+    public float CurrentMoney => currentMoney;
     public int CurrentDiamonds => currentDiamonds;
-    public int MoneyMultiplier => moneyMultiplier;
+    public float MoneyMultiplier => moneyMultiplier;
 }
