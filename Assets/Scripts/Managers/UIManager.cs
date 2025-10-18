@@ -11,22 +11,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI plantLevelText;
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI moneyPerSecondText;
     [SerializeField] private TextMeshProUGUI diamondsText;
 
     [Header("Menu Buttons")]
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Button shopButton;
     [SerializeField] private Button gameButton;
-
-    [Header("Upgrade Buttons")]
-    [SerializeField] private Button idleMoneyIncreaseButton;
-    [SerializeField] private Button wateringMoneyIncreaseButton;
-    [SerializeField] private Button doubleClickChanceButton;
-    [SerializeField] private Button waterQualityUpgradeButton;
-
-    // Debug
-    private int idleMoneyIncreaseCost = 10;
-
 
     [Header("Panels")]
     [SerializeField] private List<UIPanelEntry> panels = new List<UIPanelEntry>();
@@ -43,40 +34,17 @@ public class UIManager : MonoBehaviour
         shopButton.onClick.AddListener(() => ShowPanel("Shop"));
         gameButton.onClick.AddListener(() => ShowPanel("Game"));
 
-        // Upgrade Buttons
-        idleMoneyIncreaseButton.onClick.AddListener(() =>
-        {
-            if (ValueManager.Instance.CurrentMoney >= idleMoneyIncreaseCost)
-            {
-                ValueManager.Instance.PayForUpgrade(idleMoneyIncreaseCost);
-                currentPlant.UpgradePassiveIncome();
-            }
-            else
-            {
-                Debug.Log("Not enough money");
-                return;
-            }
-
-
-        });
-        wateringMoneyIncreaseButton.onClick.AddListener(() => currentPlant.UpgradeClickIncome());
-        waterQualityUpgradeButton.onClick.AddListener(() => ValueManager.Instance.IncreaseMultiplier());
-        //doubleClickChanceButton.onClick.AddListener(() => UpgradeDoubleClickChance());
+        //RefreshAllUpgradeButtons();
     }
 
     private void Update()
     {
         plantLevelText.text = "LVL: " + currentPlant.PlantLevel.ToString();
         diamondsText.text = ValueManager.Instance.CurrentDiamonds.ToString();
-        
-        if(ValueManager.Instance.CurrentMoney <= 999)
-        {
-            moneyText.text = ValueManager.Instance.CurrentMoney.ToString("F1");
-        }
-        else if( ValueManager.Instance.CurrentMoney >= 1000 && ValueManager.Instance.CurrentMoney <= 9999)
-        {
-            moneyText.text = ValueManager.Instance.CurrentMoney.ToString("F0");
-        }
+        moneyPerSecondText.text = currentPlant.BasePassiveMoneyValue.ToString() + "/s";
+        moneyText.text = ValueManager.Instance.CurrentMoney.ToString();
+
+       
     }
 
     public void ShowPanel(string panelName)

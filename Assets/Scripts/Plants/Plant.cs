@@ -10,8 +10,8 @@ public class Plant : MonoBehaviour
     [SerializeField] private Button plantButton;
 
     [Header("Economy")]
-    [SerializeField] private int basePassiveMoneyValue = 1;
-    [SerializeField] private int baseClickMoneyValue = 1;
+    [SerializeField] private float basePassiveMoneyValue = 1;
+    [SerializeField] private float baseClickMoneyValue = 1;
     [SerializeField] private float passiveIncomeInterval = 2f;
 
     private float passiveTimer;
@@ -50,7 +50,7 @@ public class Plant : MonoBehaviour
 
     private void GeneratePassiveIncome()
     {
-        float earnedMoney = ValueManager.Instance.MultiplyMoney(basePassiveMoneyValue + 1);
+        float earnedMoney = ValueManager.Instance.MultiplyMoney(basePassiveMoneyValue);
         ValueManager.Instance.AddMoney(earnedMoney);
     }
 
@@ -67,17 +67,18 @@ public class Plant : MonoBehaviour
         }
     }
 
-    public void UpgradePassiveIncome()
+    public void UpgradePassiveIncome(float amount)
     {
-        basePassiveMoneyValue += 1;
+        basePassiveMoneyValue += amount;
     }
 
-    public void UpgradeClickIncome()
+    public void UpgradeClickIncome(float amount)
     {
-        baseClickMoneyValue += 1;
+        baseClickMoneyValue += amount;
     }
 
     // References
     public int PlantLevel => plantLevel;
+    public float BasePassiveMoneyValue => basePassiveMoneyValue;
 
 }

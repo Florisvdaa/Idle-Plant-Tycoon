@@ -4,7 +4,7 @@ public class ValueManager : MonoBehaviour
 {
     public static ValueManager Instance { get; private set; }
 
-    private float currentMoney;
+    [SerializeField] private float currentMoney;
     private int currentDiamonds;
 
     private float moneyMultiplier = 1;
@@ -33,12 +33,12 @@ public class ValueManager : MonoBehaviour
         currentDiamonds += amount;
     }
 
-    public float MultiplyMoney(int amount)
+    public float MultiplyMoney(float amount)
     {
         return amount * moneyMultiplier;
     }
 
-    public void PayForUpgrade(int cost)
+    public void PayForUpgrade(float cost)
     {
         currentMoney -= cost;
     }
