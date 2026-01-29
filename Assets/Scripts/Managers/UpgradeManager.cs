@@ -33,6 +33,9 @@ public class UpgradeManager : MonoBehaviour
             switch (upgrade.upgradeType)
             {
                 case Upgrade.IdleMoney:
+                    if (!plant.PassiveIncomeActive)
+                        plant.UnlockPassiveIncome();
+
                     plant.UpgradePassiveIncome(upgrade.upgradeMultiplier);
                     break;
                 case Upgrade.ClickMoney:

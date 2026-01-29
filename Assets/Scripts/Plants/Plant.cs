@@ -14,6 +14,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private float baseClickMoneyValue = 1;
     [SerializeField] private float passiveIncomeInterval = 2f;
 
+    private bool passiveIncomeActive = false;
     private float passiveTimer;
     private int plantLevel = 0;
 
@@ -28,11 +29,14 @@ public class Plant : MonoBehaviour
 
     private void Update()
     {
-        passiveTimer -= Time.deltaTime;
-        if (passiveTimer <= 0f)
+        if (passiveIncomeActive)
         {
-            GeneratePassiveIncome();
-            ResetPassiveTimer();
+            passiveTimer -= Time.deltaTime;
+            if (passiveTimer <= 0f)
+            {
+                GeneratePassiveIncome();
+                ResetPassiveTimer();
+            }
         }
     }
 
@@ -77,8 +81,16 @@ public class Plant : MonoBehaviour
         baseClickMoneyValue += amount;
     }
 
+    public void UnlockPassiveIncome()
+    {
+        if (!passiveIncomeActive)
+            passiveIncomeActive = true;
+        else return;
+    }
+
     // References
     public int PlantLevel => plantLevel;
     public float BasePassiveMoneyValue => basePassiveMoneyValue;
+    public bool PassiveIncomeActive => passiveIncomeActive;
 
 }
